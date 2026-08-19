@@ -1,0 +1,18 @@
+# Ambiente virtual
+venv/
+.venv/
+env/
+
+# Cache do Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Cobertura de testes
+.coverage
+htmlcov/
+.coverage.*
+
+# Outros caches comuns
+.mypy_cache/
+.ruff_cache/
