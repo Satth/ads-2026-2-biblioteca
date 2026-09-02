@@ -1,3 +1,5 @@
+from functools import reduce
+
 VENDAS = [
     {"produto": "Teclado", "valor": 150.00, "categoria": "Periferico"},
     {"produto": "Mouse", "valor": 80.00, "categoria": "Periferico"},
@@ -9,27 +11,6 @@ VENDAS = [
 
 IMPOSTO = 0.10
 VALOR_MINIMO = 100.00
-
-def relatorio(vendas):
-    """Total liquido por categoria, apenas de vendas acima do minimo."""
-    total_por_categoria = {}
-
-    for v in vendas:
-        if not acima_do_minimo(v):
-            continue
-
-        liquido = v["valor"] * (1 - IMPOSTO)
-        cat = v["categoria"]
-
-        if cat not in total_por_categoria:
-            total_por_categoria[cat] = 0
-        total_por_categoria[cat] += liquido
-
-    return total_por_categoria
-
-if __name__ == "__main__":
-    for categoria, total in relatorio(VENDAS).items():
-         print(f"{categoria:12} R$ {total:8.2f}")
 
 def acima_do_minimo(venda):
     """Diz se a venda entra no relatorio"""
@@ -45,3 +26,13 @@ def agrupar_pr_categoria(acumulado, venda):
     """Soma a venda no total da sua categoria."""
     cat = venda["categoria"]
     return {**acumulado, cat: acumulado.get(cat, 0) + venda["valor"]}
+
+def relatorio(vendas):
+    """Total liquido por categoria, apenas de vendas acima do minimo."""
+    relevantes = filter(acima_do_minimo, vendas)
+    liquidas = map(aplicar_imposto, relevantes)
+    return reduce(agrupar_pr_categoria, liquidas, {})
+
+if __name__ == "__main__":
+    for categoria, total in relatorio(VENDAS).items():
+         print(f"{categoria:12} R$ {total:8.2f}")

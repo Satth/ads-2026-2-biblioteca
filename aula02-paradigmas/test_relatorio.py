@@ -23,3 +23,10 @@ def test_agrupa_por_categoria():
         {"produto": "B", "valor": 200.00, "categoria": "Y"},
     ]
     assert relatorio(vendas) == {"X": 180.00, "Y": 180.00}
+
+def test_imposto_varia_por_categoria():
+    vendas = [
+        {"produto": "A", "valor": 200.00, "categoria": "Tela"},
+    ]
+    # 15% de imposto sobre 200 deixa 170
+    assert relatorio(vendas) == {"Tela": 170.00}
