@@ -1,0 +1,53 @@
+servicos = ["corte", "barba", "sobrancelha", "hidratacao"]
+precos = {"corte": 35, "barba": 25, "sobrancelha": 15, "hidratacao": 40}
+comanda = ["corte", "barba", "corte", "pintura"]
+
+for servico in servicos:
+    print(servico)
+
+for numero, servico in enumerate(servicos, start=1):
+    print(numero, servico)
+
+total = 0
+
+for item in comanda:
+    if item in precos:
+        total += precos[item]
+
+print("Total:", total)
+
+saldo = 200
+quantidade = 0
+
+while saldo >= 35:
+    saldo -= 35
+    quantidade += 1
+
+print("Quantidade de cortes:", quantidade)
+
+
+for item in comanda:
+    if item not in precos:
+        continue
+    print(item)
+
+# Abaixo é uma confusão mental que eu não entendi.
+
+itens = ["corte", "pintura", "tintura", "barba"]
+
+for item in itens:
+    if item not in ("corte", "barba"):
+        itens.remove(item)
+
+print(itens)
+
+# O jeito correto que eu igualmente não entendi
+
+itens = ["corte", "pintura", "tintura", "barba"]
+
+limpos = []
+for item in itens:
+    if item in ("corte", "barba"):
+        limpos.append(item)
+
+print(limpos)
