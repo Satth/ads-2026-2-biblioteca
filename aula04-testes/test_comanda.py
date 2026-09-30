@@ -1,6 +1,6 @@
 from decimal import Decimal
 
-from comanda import fechar, itens_validos, subtotal
+from comanda.dominio import fechar, itens_validos, subtotal
 
 
 def test_subtotal_soma_apenas_o_que_esta_no_catalogo():

@@ -2,7 +2,7 @@ from decimal import Decimal
 
 import pytest
 
-from comanda import Comanda
+from comanda.dominio import Comanda
 
 
 def test_subtotal_soma_apenas_o_que_esta_no_catalogo():
